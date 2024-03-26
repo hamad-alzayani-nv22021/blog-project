@@ -1,7 +1,7 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 
-import ArticleCard from "../../../components/ArticleCard";
+import ArticleCard from "../../components/ArticleCard";
 
 const Articles = () => {
   return (

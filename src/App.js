@@ -1,12 +1,12 @@
-import './App.css';
-import HomePage from './pages/HomePage.jsx';
+import "./App.css";
+import HomePage from "./pages/home/HomePage";
 
 function App() {
   return (
     <div className="App font-opensans">
       <HomePage />
-       </div>
+    </div>
   );
-}; 
+}
 
 export default App;

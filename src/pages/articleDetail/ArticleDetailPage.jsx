@@ -1,55 +1,96 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import BreadCrumbs from "../../components/BreadCrumbs";
+import CommentsContainer from "../../components/comments/CommentsContainer";
+import MainLayout from "../../components/MainLayout";
+import { images } from "../../constants";
+import SuggestedPosts from "./container/SuggestedPosts";
 
-const SuggestedPosts = ({ className, header, posts = [], tags }) => {
+const breadCrumbsData = [
+  { name: "Home", link: "/" },
+  { name: "Blog", link: "/blog" },
+  { name: "Article title", link: "/blog/1" },
+];
+
+const postsData = [
+  {
+    _id: "1",
+    image: images.Post1Image,
+    title: "Help children get better education",
+    createdAt: "2023-01-28T15:35:53.607+0000",
+  },
+  {
+    _id: "2",
+    image: images.Post1Image,
+    title: "Help children get better education",
+    createdAt: "2023-01-28T15:35:53.607+0000",
+  },
+  {
+    _id: "3",
+    image: images.Post1Image,
+    title: "Help children get better education",
+    createdAt: "2023-01-28T15:35:53.607+0000",
+  },
+  {
+    _id: "4",
+    image: images.Post1Image,
+    title: "Help children get better education",
+    createdAt: "2023-01-28T15:35:53.607+0000",
+  },
+];
+
+const tagsData = [
+  "Medical",
+  "Lifestyle",
+  "Learn",
+  "Healthy",
+  "Food",
+  "Diet",
+  "Education",
+];
+
+const ArticleDetailPage = () => {
   return (
-    <div
-      className={`w-full shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] rounded-lg p-4 ${className}`}
-    >
-      <h2 className="font-roboto font-medium text-dark-hard md:text-xl">
-        {header}
-      </h2>
-      <div className="grid gap-y-5 mt-5 md:grid-cols-2 md:gap-x-5 lg:grid-cols-1">
-        {posts.map((item) => (
-          <div
-            key={item._id}
-            className="flex space-x-3 flex-nowrap items-center"
-          >
-            <img
-              className="aspect-square object-cover rounded-lg w-1/5"
-              src={item.image}
-              alt="laptop"
-            />
-            <div className="text-sm font-roboto text-dark-hard font-medium">
-              <h3 className="text-sm font-roboto text-dark-hard font-medium md:text-base lg:text-lg">
-                {item.title}
-              </h3>
-              <span className="text-xs opacity-60">
-                {new Date(item.createdAt).toLocaleDateString("en-US", {
-                  day: "numeric",
-                  month: "short",
-                  year: "numeric",
-                })}
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-      <h2 className="font-roboto font-medium text-dark-hard mt-8 md:text-xl">
-        Tags
-      </h2>
-      <div className="flex flex-wrap gap-x-2 gap-y-2 mt-4">
-        {tags.map((item) => (
+    <MainLayout>
+      <section className="container mx-auto max-w-5xl flex flex-col px-5 py-5 lg:flex-row lg:gap-x-5 lg:items-start">
+        <article className="flex-1">
+          <BreadCrumbs data={breadCrumbsData} />
+          <img
+            className="rounded-xl w-full"
+            src={images.Post1Image}
+            alt="laptop"
+          />
           <Link
-            to="/"
-            className="inline-block rounded-md px-3 py-1.5 bg-primary font-roboto text-xs text-white md:text-sm"
+            to="/blog?category=selectedCategory"
+            className="text-primary text-sm font-roboto inline-block mt-4 md:text-base"
           >
-            {item}
+            EDUCATION
           </Link>
-        ))}
-      </div>
-    </div>
+          <h1 className="text-xl font-medium font-roboto mt-4 text-dark-hard md:text-[26px]">
+            Help children get better education
+          </h1>
+          <div className="mt-4 text-dark-soft">
+            <p className="leading-7">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae
+              congue mauris rhoncus aenean vel elit scelerisque. In egestas erat
+              imperdiet sed euismod nisi porta lorem mollis. Morbi tristique
+              senectus et netus. Mattis pellentesque id nibh tortor id aliquet
+              lectus proin.
+            </p>
+          </div>
+          <CommentsContainer className="mt-10" logginedUserId="a" />
+        </article>
+        <SuggestedPosts
+          header="Latest Article"
+          posts={postsData}
+          tags={tagsData}
+          className="mt-8 lg:mt-0 lg:max-w-xs"
+        />
+      </section>
+    </MainLayout>
   );
 };
 
-export default SuggestedPosts;
+export default ArticleDetailPage;
